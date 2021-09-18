@@ -5,7 +5,7 @@ const Manager = require('./lib/js/manager.js')
 const pages = require('./src/pages.js')
 const fs = require('fs')
 
-const manQuestions = ['Enter name of the team manager: ', 'Enter employee ID of team manager:', 'Enter email of team manager:', 'Enter office number of team manager:']
+const Questions = ['Enter name of the team manager: ', 'Enter employee ID of team manager:', 'Enter email of team manager:', 'Enter office number of team manager:']
 const teamMembers = []
 
 function writeToFile(fileName, data) {
@@ -14,22 +14,22 @@ function writeToFile(fileName, data) {
 }
 
 function init() {
-    inq
+    inquirer
         .prompt([
             {
                 type: 'input',
                 name: 'managerName',
-                message: manQuestions[0],
+                message: Questions[0],
             },
             {
                 type: 'input',
                 name: 'managerID',
-                message: manQuestions[1],
+                message: Questions[1],
             },
             {
                 type: 'input',
                 name: 'managerEmail',
-                message: manQuestions[2],
+                message: Questions[2],
                 validate: email => {
                     var re = /\S+@\S+\.\S+/;
                     if (re.test(email)) {
@@ -42,7 +42,7 @@ function init() {
             {
                 type: 'input',
                 name: 'managerOffice',
-                message: manQuestions[3],
+                message: Questions[3],
             }
         ])
         .then((data) => {
@@ -52,8 +52,8 @@ function init() {
         })
 }
 
-function chooseRole(members) {
-    inq
+function chooseRole(teamMembers) {
+    inquirer
         .prompt([
             {
                 type: 'list',
@@ -85,7 +85,7 @@ function chooseRole(members) {
 }
 
 function getQuestions(role, questions){
-    inq
+    inquirer
         .prompt([
             {
                 type: 'input',
